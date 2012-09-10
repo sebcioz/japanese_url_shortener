@@ -108,6 +108,7 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.10.0)
     rubyzip (0.9.9)
+    rufus-mnemo (1.2.3)
     sass (3.2.1)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -145,6 +146,7 @@ DEPENDENCIES
   jquery-rails
   rails (= 3.2.5)
   rspec-rails (~> 2.0)
+  rufus-mnemo
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)

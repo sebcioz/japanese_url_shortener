@@ -1,4 +1,9 @@
 UrlShortener::Application.routes.draw do
+
+  resources :urls
+  match '/:shortcut', :to => 'urls#visit', :as => 'visit_shortcut'
+  root :to => 'urls#new'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

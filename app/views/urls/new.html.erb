@@ -1,0 +1,11 @@
+<ul id="urls">
+  <% @urls.each do |url| %>
+    <li><%= link_to url.shortcut, visit_shortcut_url(url.shortcut) %></li>
+  <% end %>
+</ul>
+
+<%= form_for @url do |f| %>
+  <%= f.label :target %>
+  <%= f.text_field :target %>
+  <%= f.submit "Shorten url" %>
+<% end %>
