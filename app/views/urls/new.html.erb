@@ -1,6 +1,6 @@
 <ul id="urls">
   <% @urls.each do |url| %>
-    <li><%= link_to url.shortcut, visit_shortcut_url(url.shortcut) %></li>
+    <li><%= link_to visit_shortcut_url(url.shortcut), visit_shortcut_url(url.shortcut) %> -&gt; <%= url.target %></li>
   <% end %>
 </ul>
 

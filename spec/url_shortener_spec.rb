@@ -31,4 +31,20 @@ describe UrlShortener, :type => :request, :driver => :url_shortener_driver do
       page.should_not have_selector("#urls li a")
     end
   end
+  
+  it "should list all correctly submited urls" do
+    urls = ["http://google.pl", "http://example.com", "http://twitter.com"]
+
+    urls.each do |url|
+      visit '/'
+      fill_in 'url_target', :with => url
+      click_button "Shorten url"
+    end
+
+    visit '/'
+
+    urls.each do |url|
+      page.should have_content(url)
+    end
+  end
 end
