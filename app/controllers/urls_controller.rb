@@ -1,22 +1,32 @@
 class UrlsController < ApplicationController
 
+  before_filter :find_urls
+
   def new
-    @urls = Url.all
     @url = Url.new
   end
 
   def create
     @url = Url.new(params[:url])
-    @url.generate_shortcut(Time.now.to_i)
-    
+    @url.generate_shortcut
+
     if @url.save
       redirect_to root_path
+    else
+      flash[:error] = 'Given url is invalid.'
+      render :action => 'new'
     end
   end
 
   def visit
     url = Url.where(:shortcut => params[:shortcut]).first
     redirect_to url.target
+  end
+
+  private
+
+  def find_urls
+    @urls = Url.all
   end
 
 end

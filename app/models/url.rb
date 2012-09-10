@@ -1,7 +1,14 @@
 class Url < ActiveRecord::Base
-  attr_accessible :shortcut, :target
+  attr_accessible :target
 
-  def generate_shortcut(int)
-    self.shortcut = Rufus::Mnemo.from_integer(int)
+  validates_presence_of :target
+  validates_format_of :target, :with => URI::regexp(%w(http https ftp))
+
+  validates_uniqueness_of :shortcut
+
+  default_scope order("created_at DESC")
+
+  def generate_shortcut
+    self.shortcut = Rufus::Mnemo.from_integer((rand * 10**6).to_i)
   end
 end
