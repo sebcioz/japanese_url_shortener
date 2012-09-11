@@ -1,11 +1,6 @@
 require 'spec_helper'
 
 describe Url, :type => :request, :driver => :url_shortener_driver do
-  before(:each) do
-    Url.delete_all
-    Click.delete_all
-  end
-
   it "should shorten valid url" do
     valid_urls = ['http://google.pl', 'http://google.com/with/path', 'ftp://aasa@asad.pl:8080/path']
 
