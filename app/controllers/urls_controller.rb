@@ -8,7 +8,7 @@ class UrlsController < ApplicationController
 
   def create
     @url = Url.new(params[:url])
-    @url.generate_shortcut
+    @url.create_shortcut
 
     if @url.save
       redirect_to root_path
