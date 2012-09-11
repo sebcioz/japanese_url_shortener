@@ -1,21 +1,52 @@
-<ul id="urls">
-  <% @urls.each do |url| %>
-    <li>
-      <%= link_to visit_shortcut_url(url.shortcut), visit_shortcut_url(url.shortcut) %> 
-      -&gt; 
-      <%= url.target %>
-      [<span class="clicks"><%= url.clicks.count %></span>]
-      <ul>
-        <% url.clicks.each do |click| %>
-          <li><%= click.browser %></li>
-        <% end %>
-      </ul>
-    </li>
+<div class="six columns">
+  <h4>Shorten url</h4>
+  <%= form_for @url do |f| %>
+    <div class="row">
+      <div class="twelve columns">
+        <div class="row collapse">
+          <div class="eight mobile-three columns">
+            <%= f.text_field :target %>
+          </div>
+          <div class="four mobile-one columns">
+            <%= f.submit "Shorten url", :class=>"postfix button expand" %>
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
 
-<%= form_for @url do |f| %>
-  <%= f.label :target %>
-  <%= f.text_field :target %>
-  <%= f.submit "Shorten url" %>
-<% end %>
+<div class="six columns">
+  <h4>History</h4>
+  <table id="urls">
+    <thead>
+      <tr>
+        <th>Long url</th>
+        <th>Short url</th>
+        <th>Clicks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @urls.each do |url| %>
+        <tr class="url" data-url-id="<%= url.id %>">
+          <td class="long-url"><%= link_to url.target, url.target %></td>
+          <td class="short-url"><%= link_to visit_shortcut_url(url.shortcut), visit_shortcut_url(url.shortcut) %></td>
+          <td class="clicks"><a href="#"><span class="round label"><%= url.clicks.count %></span></a></td>
+        </tr>
+
+        <tr class="browsers" data-url-id="<%= url.id %>">
+          <td colspan="3">
+            <table>
+              <% url.clicks.each do |click| %>
+                <tr>
+                  <td class="browser-name"><%= click.browser %></td>
+                  <td><%= time_ago_in_words(click.created_at) %> ago (<%= click.created_at.to_s(:short) %>)</td>
+                </tr>
+              <% end %>
+            </table>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,3 +1,30 @@
 // Place all the styles related to the urls controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#urls {
+  width: 100%;
+
+  .clicks {
+    text-align: center;
+  }
+}
+
+.browsers {
+  display: none;
+
+  td {
+    text-align: center;
+
+    table {
+      width: 100%;
+      margin: 0;
+
+      .browser-name {
+        font-weight: bold;
+      }
+    }
+  }
+
+
+}

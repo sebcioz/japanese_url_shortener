@@ -18,7 +18,7 @@ describe Url, :type => :request, :driver => :url_shortener_driver do
       page.should_not have_content 'Given url is invalid.'
 
       page.driver.stop_following_redirects
-      all("#urls a").first.click
+      all("#urls .short-url a").first.click
       page.driver.browser.last_response['Location'].should == url
       page.driver.follow_redirects
     end

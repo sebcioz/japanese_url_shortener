@@ -12,8 +12,9 @@ class UrlsController < ApplicationController
 
     if @url.save
       redirect_to root_path
+      flash[:success] = 'Url shortened.'
     else
-      flash[:error] = 'Given url is invalid.'
+      flash[:alert] = 'Given url is invalid.'
       render :action => 'new'
     end
   end
