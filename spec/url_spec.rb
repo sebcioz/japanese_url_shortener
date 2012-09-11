@@ -1,6 +1,11 @@
 require 'spec_helper'
 
-describe UrlShortener, :type => :request, :driver => :url_shortener_driver do
+describe Url, :type => :request, :driver => :url_shortener_driver do
+  before(:each) do
+    Url.delete_all
+    Click.delete_all
+  end
+
   it "should shorten valid url" do
     valid_urls = ['http://google.pl', 'http://google.com/with/path', 'ftp://aasa@asad.pl:8080/path']
 
@@ -13,7 +18,7 @@ describe UrlShortener, :type => :request, :driver => :url_shortener_driver do
       page.should_not have_content 'Given url is invalid.'
 
       page.driver.stop_following_redirects
-      all("#urls li a").first.click
+      all("#urls a").first.click
       page.driver.browser.last_response['Location'].should == url
       page.driver.follow_redirects
     end
@@ -31,7 +36,7 @@ describe UrlShortener, :type => :request, :driver => :url_shortener_driver do
       page.should_not have_selector("#urls li a")
     end
   end
-  
+
   it "should list all correctly submited urls" do
     urls = ["http://google.pl", "http://example.com", "http://twitter.com"]
 

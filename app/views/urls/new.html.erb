@@ -1,6 +1,16 @@
 <ul id="urls">
   <% @urls.each do |url| %>
-    <li><%= link_to visit_shortcut_url(url.shortcut), visit_shortcut_url(url.shortcut) %> -&gt; <%= url.target %></li>
+    <li>
+      <%= link_to visit_shortcut_url(url.shortcut), visit_shortcut_url(url.shortcut) %> 
+      -&gt; 
+      <%= url.target %>
+      [<span class="clicks"><%= url.clicks.count %></span>]
+      <ul>
+        <% url.clicks.each do |click| %>
+          <li><%= click.browser %></li>
+        <% end %>
+      </ul>
+    </li>
   <% end %>
 </ul>
 

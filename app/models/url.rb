@@ -8,6 +8,8 @@ class Url < ActiveRecord::Base
 
   default_scope order("created_at DESC")
 
+  has_many :clicks
+
   def generate_shortcut
     self.shortcut = Rufus::Mnemo.from_integer((rand * 10**6).to_i)
   end
