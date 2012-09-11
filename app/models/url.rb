@@ -13,4 +13,8 @@ class Url < ActiveRecord::Base
   def generate_shortcut
     self.shortcut = Rufus::Mnemo.from_integer((rand * 10**6).to_i)
   end
+
+  def click!(agent)
+    self.clicks.create(:browser => agent.name)
+  end
 end

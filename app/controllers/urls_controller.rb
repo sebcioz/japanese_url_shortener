@@ -20,7 +20,8 @@ class UrlsController < ApplicationController
 
   def visit
     url = Url.where(:shortcut => params[:shortcut]).first
-    url.clicks.create!(:browser => request.env['HTTP_USER_AGENT'])
+    agent = Agent.new(request.env['HTTP_USER_AGENT'] || "")
+    url.click!(agent)
     redirect_to url.target
   end
 

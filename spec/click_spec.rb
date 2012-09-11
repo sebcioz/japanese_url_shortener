@@ -18,11 +18,11 @@ describe UrlShortener, :type => :request, :driver => :url_shortener_driver do
   it "should save user agent" do
     visit '/'
 
-    page.driver.browser.header("User-Agent", "Google Chrome")
+    page.driver.browser.header("User-Agent", 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-us) AppleWebKit/531.9 (KHTML, like Gecko) Version/4.0.3 Safari/531.9')
 
     all("#urls a")[0].click
 
-    all("#urls > *")[0].should have_content("Chrome")
+    all("#urls > *")[0].should have_content("Safari")
   end
 
 end
