@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911111509) do
+ActiveRecord::Schema.define(:version => 20120911111934) do
 
   create_table "clicks", :force => true do |t|
     t.integer  "url_id"
@@ -25,8 +25,9 @@ ActiveRecord::Schema.define(:version => 20120911111509) do
   create_table "urls", :force => true do |t|
     t.text     "target"
     t.string   "shortcut"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "clicks_count"
   end
 
   add_index "urls", ["shortcut"], :name => "index_urls_on_shortcut"
