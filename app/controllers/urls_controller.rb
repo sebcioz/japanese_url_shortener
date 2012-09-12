@@ -8,11 +8,12 @@ class UrlsController < ApplicationController
 
   def create
     @url = Url.new(params[:url])
+    @url.user_id = user_id
     @url.create_shortcut
 
     if @url.save
-      redirect_to root_path
       flash[:success] = 'Url shortened.'
+      redirect_to root_path
     else
       flash[:alert] = 'Given url is invalid.'
       render :action => 'new'
@@ -20,16 +21,18 @@ class UrlsController < ApplicationController
   end
 
   def visit
-    url = Url.where(:shortcut => params[:shortcut]).first
     agent = Agent.new(request.env['HTTP_USER_AGENT'] || "")
+
+    url = Url.where(:shortcut => params[:shortcut]).first
     url.click!(agent)
+
     redirect_to url.target
   end
 
   private
 
   def find_urls
-    @urls = Url.all
+    @urls = Url.where(:user_id => user_id).all
   end
 
 end

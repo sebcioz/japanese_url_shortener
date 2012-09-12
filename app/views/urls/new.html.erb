@@ -28,13 +28,13 @@
     </thead>
     <tbody>
       <% @urls.each do |url| %>
-        <tr class="url" data-url-id="<%= url.id %>">
+        <tr class="url">
           <td class="long-url"><%= link_to url.target, url.target %></td>
           <td class="short-url"><%= link_to visit_shortcut_url(url.shortcut), visit_shortcut_url(url.shortcut) %></td>
           <td class="clicks"><a href="#"><span class="round label"><%= url.clicks.count %></span></a></td>
         </tr>
 
-        <tr class="browsers" data-url-id="<%= url.id %>">
+        <tr class="browsers">
           <td colspan="3">
             <table>
               <% url.clicks.each do |click| %>
