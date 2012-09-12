@@ -84,8 +84,6 @@ GEM
     nokogiri (1.5.4)
     pg (0.14.1)
     polyglot (0.3.3)
-    postgres (0.8.1)
-      pg (~> 0)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -171,7 +169,7 @@ DEPENDENCIES
   database_cleaner
   jquery-rails
   launchy
-  postgres
+  pg
   rails (= 3.2.5)
   rspec-rails (~> 2.0)
   rufus-mnemo
